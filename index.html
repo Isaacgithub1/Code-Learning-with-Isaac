@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Learning with Isaac – Python, SQL, C, C++</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fas fa-code"></i> Code Learning with Isaac
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a href="#" onclick="showSection('home')">Home</a>
+      <a href="#" onclick="showSection('python')">Python</a>
+      <a href="#" onclick="showSection('sql')">SQL</a>
+      <a href="#" onclick="showSection('c')">C</a>
+      <a href="#" onclick="showSection('cpp')">C++</a>
+      <a href="#" onclick="showSection('playground')">Playground</a>
+      <a href="#" onclick="showSection('dashboard')" id="dashboard-link" style="display:none;">Dashboard</a>
+      <a href="#" onclick="showSection('admin')" id="admin-link" style="display:none;">Admin</a>
+      <a href="#" onclick="showSection('login')" id="login-link">Login</a>
+      <a href="#" onclick="logout()" id="logout-link" style="display:none;">Logout</a>
+      <button id="theme-toggle">🌙</button>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ================= HOME ================= -->
+    <section id="home" class="section active">
+      <div class="hero">
+        <div class="hero-content">
+          <h1>Code Learning with Isaac</h1>
+          <p class="subtitle">Master Python, SQL, C & C++ with clear lessons and hands-on practice</p>
+          <p class="hero-desc">Interactive lessons • Live playground • Quizzes • Progress tracking</p>
+          <div class="hero-buttons">
+            <button class="btn-primary" onclick="showSection('python')">Start Learning</button>
+            <button class="btn-secondary" onclick="showSection('login')">Create Free Account</button>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80" alt="Coding">
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="features">
+        <div class="feature-card" onclick="showSection('python')">
+          <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400&q=80" alt="Python">
+          <h3>Python</h3>
+          <p>From basics to real-world scripting and automation.</p>
+        </div>
+        <div class="feature-card" onclick="showSection('sql')">
+          <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&q=80" alt="SQL">
+          <h3>SQL</h3>
+          <p>Learn to query and manage databases professionally.</p>
+        </div>
+        <div class="feature-card" onclick="showSection('c')">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&q=80" alt="C">
+          <h3>C Programming</h3>
+          <p>Build a strong foundation in low-level programming.</p>
+        </div>
+        <div class="feature-card" onclick="showSection('cpp')">
+          <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=400&q=80" alt="C++">
+          <h3>C++</h3>
+          <p>Object-oriented programming and modern C++ features.</p>
+        </div>
+      </div>
+
+      <!-- ========== MEET ISAAC (Your Photo) ========== -->
+      <div class="about-section">
+        <div class="about-image">
+          <img src="C://Users//isaac//OneDrive//Desktop//Office Files//Code_Clave_Solutions_Learnings//Isaac_Website//Isaac.jpeg" alt="Isaac">
+        </div>
+        <div class="about-content">
+          <h2>Meet Isaac</h2>
+          <p class="tagline">Founder & Instructor</p>
+          <p>Hi, I'm Isaac — a passionate software engineer and educator. I created <strong>Code Learning with Isaac</strong> to help students and beginners learn programming the right way: with clear explanations, practical examples, and lots of hands-on coding.</p>
+          <p>Whether you're starting from zero or leveling up your skills in Python, SQL, C, or C++, you're in the right place.</p>
+          <div class="about-badges">
+            <span>Python</span>
+            <span>SQL</span>
+            <span>C</span>
+            <span>C++</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= LOGIN ================= -->
+    <section id="login" class="section">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-header">
+            <h2 id="auth-title">Welcome Back</h2>
+            <p id="auth-subtitle">Login to continue your learning journey</p>
+          </div>
+
+          <!-- Login Form -->
+          <form id="login-form" onsubmit="handleLogin(event)">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="login-email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="login-password" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn-primary full-width">Login</button>
+          </form>
+
+          <!-- Register Form -->
+          <form id="register-form" onsubmit="handleRegister(event)" style="display:none;">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" id="reg-name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="reg-email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="reg-password" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn-primary full-width">Create Account</button>
+          </form>
+
+          <div class="auth-footer">
+            <p id="auth-toggle-text">Don't have an account? <a href="#" onclick="toggleAuth()">Register</a></p>
+            <p class="demo-accounts">
+              <small>
+                <strong>Demo User:</strong> student@isaac.com / 123456<br>
+                <strong>Demo Admin:</strong> admin@isaac.com / admin123
+              </small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= USER DASHBOARD ================= -->
+    <section id="dashboard" class="section">
+      <h1>My Learning Dashboard</h1>
+      <div class="dashboard-grid">
+        <div class="dash-card welcome-card">
+          <h2>Welcome back, <span id="user-name">Student</span> 👋</h2>
+          <p>Continue learning and track your progress.</p>
+        </div>
+
+        <div class="dash-card">
+          <h3>Your Progress</h3>
+          <div class="progress-item">
+            <span>Python</span>
+            <div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div>
+          </div>
+          <div class="progress-item">
+            <span>SQL</span>
+            <div class="progress-bar"><div class="progress-fill" style="width: 20%"></div></div>
+          </div>
+          <div class="progress-item">
+            <span>C</span>
+            <div class="progress-bar"><div class="progress-fill" style="width: 10%"></div></div>
+          </div>
+          <div class="progress-item">
+            <span>C++</span>
+            <div class="progress-bar"><div class="progress-fill" style="width: 5%"></div></div>
+          </div>
+        </div>
+
+        <div class="dash-card">
+          <h3>Quick Actions</h3>
+          <button class="btn-primary" onclick="showSection('python')">Continue Python</button>
+          <button class="btn-secondary" onclick="showSection('playground')">Open Playground</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ADMIN PAGE ================= -->
+    <section id="admin" class="section">
+      <h1><i class="fas fa-shield-alt"></i> Admin Dashboard</h1>
+      
+      <div class="admin-stats">
+        <div class="stat-card">
+          <h3 id="total-users">0</h3>
+          <p>Total Users</p>
+        </div>
+        <div class="stat-card">
+          <h3>4</h3>
+          <p>Courses</p>
+        </div>
+        <div class="stat-card">
+          <h3>20</h3>
+          <p>Lessons</p>
+        </div>
+        <div class="stat-card">
+          <h3>Active</h3>
+          <p>System Status</p>
+        </div>
+      </div>
+
+      <div class="admin-panels">
+        <div class="admin-card">
+          <h3>Registered Users</h3>
+          <div id="users-table"></div>
+        </div>
+
+        <div class="admin-card">
+          <h3>Quick Admin Actions</h3>
+          <button class="btn-primary" onclick="alert('Feature coming soon: Add new lesson')">Add New Lesson</button>
+          <button class="btn-secondary" onclick="alert('Feature coming soon: Manage courses')">Manage Courses</button>
+          <button class="btn-danger" onclick="clearAllUsers()">Clear All Users</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PYTHON ================= -->
+    <section id="python" class="section">
+      <h1>Python Course</h1>
+      <div class="lesson-layout">
+        <div class="sidebar">
+          <h3>Lessons</h3>
+          <ul>
+            <li onclick="loadLesson('python', 1)">1. Introduction & Variables</li>
+            <li onclick="loadLesson('python', 2)">2. Data Types & Operators</li>
+            <li onclick="loadLesson('python', 3)">3. If-Else & Loops</li>
+            <li onclick="loadLesson('python', 4)">4. Functions</li>
+            <li onclick="loadLesson('python', 5)">5. Lists & Dictionaries</li>
+          </ul>
+        </div>
+        <div class="content" id="python-content">
+          <p>Select a lesson to begin.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SQL ================= -->
+    <section id="sql" class="section">
+      <h1>SQL Course</h1>
+      <div class="lesson-layout">
+        <div class="sidebar">
+          <h3>Lessons</h3>
+          <ul>
+            <li onclick="loadLesson('sql', 1)">1. Introduction to SQL</li>
+            <li onclick="loadLesson('sql', 2)">2. SELECT & WHERE</li>
+            <li onclick="loadLesson('sql', 3)">3. JOINs</li>
+            <li onclick="loadLesson('sql', 4)">4. Aggregate Functions</li>
+            <li onclick="loadLesson('sql', 5)">5. CREATE & INSERT</li>
+          </ul>
+        </div>
+        <div class="content" id="sql-content">
+          <p>Select a lesson to begin.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= C ================= -->
+    <section id="c" class="section">
+      <h1>C Programming</h1>
+      <div class="lesson-layout">
+        <div class="sidebar">
+          <h3>Lessons</h3>
+          <ul>
+            <li onclick="loadLesson('c', 1)">1. Basics & Hello World</li>
+            <li onclick="loadLesson('c', 2)">2. Variables & Data Types</li>
+            <li onclick="loadLesson('c', 3)">3. Control Flow</li>
+            <li onclick="loadLesson('c', 4)">4. Functions & Arrays</li>
+            <li onclick="loadLesson('c', 5)">5. Pointers Intro</li>
+          </ul>
+        </div>
+        <div class="content" id="c-content">
+          <p>Select a lesson to begin.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= C++ ================= -->
+    <section id="cpp" class="section">
+      <h1>C++ Course</h1>
+      <div class="lesson-layout">
+        <div class="sidebar">
+          <h3>Lessons</h3>
+          <ul>
+            <li onclick="loadLesson('cpp', 1)">1. C++ Basics</li>
+            <li onclick="loadLesson('cpp', 2)">2. Classes & Objects</li>
+            <li onclick="loadLesson('cpp', 3)">3. Inheritance</li>
+            <li onclick="loadLesson('cpp', 4)">4. STL Vectors & Maps</li>
+            <li onclick="loadLesson('cpp', 5)">5. File Handling</li>
+          </ul>
+        </div>
+        <div class="content" id="cpp-content">
+          <p>Select a lesson to begin.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PLAYGROUND ================= -->
+    <section id="playground" class="section">
+      <h1>Code Playground</h1>
+      <div class="playground-controls">
+        <select id="lang-select">
+          <option value="python">Python</option>
+          <option value="sql">SQL</option>
+          <option value="c">C</option>
+          <option value="cpp">C++</option>
+        </select>
+        <button class="btn-primary" onclick="runCode()">Run Code</button>
+        <button class="btn-secondary" onclick="clearEditor()">Clear</button>
+      </div>
+      <textarea id="code-editor"></textarea>
+      <pre id="output">Output will appear here...</pre>
+      <p class="note">Note: This is a frontend demo. Real code execution can be added later with a backend.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Code Learning with Isaac. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/sql/sql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
